@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="pers.fhr.mybatisdemo.daos.ArtistDao">
+    <!--id应该是接口中的方法名，结果类型如没有配置别名则应该使用全名称 -->
+    <!--获得所有对象 -->
+    <select id="getAll" resultType="Artist">
+        select * from Artist
+    </select>
+    <!--获得对象通过编号 -->
+    <select id="getById" resultType="Artist">
+        select * from Artist where ArtistId=#{id}
+    </select>
+    <!-- 增加 -->
+    <insert id="add">
+        insert into Artist(Name)
+        values(#{name})
+    </insert>
+    <!-- 删除 -->
+    <delete id="delete">
+        delete from Artist where ArtistId=#{id}
+    </delete>
+    <!-- 更新 -->
+    <update id="update">
+        update Artist set Name=#{Name}
+        where id=#{artistId}
+    </update>
+</mapper>
