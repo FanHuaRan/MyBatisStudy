@@ -12,7 +12,10 @@
         select * from Album where AlbumId=#{id}
     </select>
     <!-- 增加 -->
-    <insert id="add">
+    <!-- 关于主键请参考：http://blog.csdn.net/qq496013218/article/details/52913153 
+    					http://www.cnblogs.com/w1217/p/5541631.html -->
+    <insert id="add" useGeneratedKeys="true" keyProperty="albumId" parameterType="Album">
+    	 <!--useGeneratedKeys和keyProperty：可以将插入记录到的主键值设置到参数指定对象的指定属性上 -->
         insert into Album(GenreId,ArtistId,Title,Price,AlbumArtUrl)
         values(#{genreId},#{artistId},#{title},#{price},#{albumArtUrl})
     </insert>

@@ -15,10 +15,13 @@
     http://www.springframework.org/schema/context/spring-context-4.1.xsd
     http://www.springframework.org/schema/cache
     http://www.springframework.org/schema/cache/spring-cache-4.1.xsd">
+    
     <!--参考:http://www.cnblogs.com/best/p/5648740.html#_label4-->
+    
 	  <!--引入属性文件，在配置中占位使用 -->
     <context:property-placeholder location="classpath*:db.properties" />
-	<!-- C3P0连接池 -->
+    
+	<!-- 配置C3P0连接池 -->
      <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		  <property name="driverClass" value="${jdbc.driver}"></property>
 		  <property name="jdbcUrl" value="${jdbc.url}"></property>
@@ -40,13 +43,13 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 数据源 -->
         <property name="dataSource" ref="dataSource"></property>
-        <!-- 为实体类配置别名 -->
+        <!-- 为实体类配置别名包，以后使用实体类，就不需要加上全限定名 -->
         <property name="typeAliasesPackage" value="pers.fhr.mybatisdemo.models"></property>
         <!-- sql映射文件路径 -->
         <property name="mapperLocations" value="classpath*:pers/fhr/mybatisdemo/mappers/*Mapper.xml"></property>
     </bean>
     
-     <!--自动扫描对象关系映射 也就是实现我们的dao -->
+     <!--自动扫描对象关系映射 也就是根据dao接口和映射文件实现我们的dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--指定会话工厂，如果当前上下文中只定义了一个则该属性可省去 -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
@@ -59,14 +62,14 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
+    
     <!--支持注解驱动的事务管理，指定事务管理器 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
     
     <!-- 扫描包 -->
       <!-- 启用Spring注解 -->
     <context:annotation-config />
-    <!-- 扫描注解 将Bean进行注册 -->
-     <!-- 根容器中最好只包含服务、仓库和其它业务逻辑，所以在此把Controller过滤掉 -->
+    <!-- 扫描注解 将注解Bean进行注册 -->
     <context:component-scan base-package="pers.fhr.mybatisdemo">
    	 <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>

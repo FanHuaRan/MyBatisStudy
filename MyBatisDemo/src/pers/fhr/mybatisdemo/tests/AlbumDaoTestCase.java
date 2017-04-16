@@ -24,5 +24,19 @@ public class AlbumDaoTestCase {
 		assertNotNull(albums);
 		assertEquals(true, albums.size()>0);
 	}
-
+	@Test
+	public void testAdd(){
+		Album entity=new Album(){
+			{
+				setAlbumArtUrl("/test/url");
+				setArtistId(1);
+				setGenreId(1);
+				setPrice(9.8);
+				setTitle("hellomusic");
+			}
+		};
+		albumDao.add(entity);
+		System.out.print(entity.getAlbumId());
+		assertEquals(true, entity.getAlbumId()>0);
+	}
 }

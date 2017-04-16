@@ -1,9 +1,10 @@
 package pers.fhr.mybatisdemo.models;
 
 /**
- * Genre entity. @author MyEclipse Persistence Tools
+ * Genre实体
+ * @author fhr
+ * @date 2017/04/15
  */
-
 public class Genre implements java.io.Serializable {
 
 	private static final long serialVersionUID = -6339720986481140545L;

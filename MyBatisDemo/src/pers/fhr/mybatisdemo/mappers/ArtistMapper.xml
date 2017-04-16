@@ -12,7 +12,8 @@
         select * from Artist where ArtistId=#{id}
     </select>
     <!-- 增加 -->
-    <insert id="add">
+    <insert id="add" useGeneratedKeys="true" keyProperty="artistId" parameterType="Artist">
+    	 <!--useGeneratedKeys和keyProperty：可以将插入记录到的主键值设置到参数指定对象的指定属性上 -->
         insert into Artist(Name)
         values(#{name})
     </insert>

@@ -1,9 +1,10 @@
 package pers.fhr.mybatisdemo.models;
 
 /**
- * Artist entity. @author MyEclipse Persistence Tools
+ * Artist实体
+ * @author fhr
+ * @date 2017/04/15
  */
-
 public class Artist implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 7313476170121740933L;

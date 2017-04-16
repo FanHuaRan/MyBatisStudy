@@ -1,9 +1,10 @@
 package pers.fhr.mybatisdemo.models;
 
 /**
- * Album entity. @author MyEclipse Persistence Tools
+ * Album实体
+ * @author fhr
+ * @date 2017/04/15
  */
-
 public class Album implements java.io.Serializable {
 	private static final long serialVersionUID = 6875701982559863363L;
 	// Fields
